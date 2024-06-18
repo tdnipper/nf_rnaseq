@@ -1,4 +1,6 @@
 process fastqc {
+    tag "qc"
+
     container "biocontainers/biocontainers:v1.1.0_cv2"
 
     publishDir params.raw_qc_results, mode: "copy"
