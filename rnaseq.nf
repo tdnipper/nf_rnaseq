@@ -1,8 +1,9 @@
 include {fastqc} from "./modules/fastqc/main.nf"
+//include {bbduk} from "./modules/bbduk/main.nf"
+
+def raw_files = Channel.fromPath(params.raw_reads)
+def trimmed_reads = "./data/trimmed_reads"
 
 workflow  {
-    def raw_files = Channel.fromPath(params.raw_reads)
     raw_fastqc = fastqc(raw_files)
 }
-
-log
