@@ -1,7 +1,7 @@
 process fastqc {
     tag "qc"
 
-    container "biocontainers/biocontainers:v1.1.0_cv2"
+    container "biocontainers/fastqc:v0.11.9_cv8"
 
     publishDir params.raw_qc_results, mode: "copy"
 
@@ -9,10 +9,10 @@ process fastqc {
     path(raw_reads)
 
     output:
-    path "*.zip" into raw_qc_results
+    path "*.zip", emit: raw_qc_channel
 
     script:
     """
-    fastqc ${raw_reads} -o ${raw_qc_results}
+    fastqc ${raw_reads}
     """
 }
