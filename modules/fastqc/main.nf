@@ -13,6 +13,6 @@ process fastqc {
 
     script:
     """
-    fastqc ${raw_reads_R1} ${raw_reads_R2} -o ${raw_qc_results}
+    fastqc ${raw_reads} -o ${raw_qc_results}
     """
 }
