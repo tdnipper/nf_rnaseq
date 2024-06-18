@@ -1,6 +1,8 @@
 include {fastqc} from "./modules/fastqc/main.nf"
 
 workflow  {
-    raw_fastqc = fastqc(params.raw_reads)
-
+    def raw_files = Channel.fromPath(params.raw_reads)
+    raw_fastqc = fastqc(raw_files)
 }
+
+log
