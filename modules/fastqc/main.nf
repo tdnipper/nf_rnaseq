@@ -3,7 +3,7 @@ process fastqc {
 
     container "biocontainers/fastqc:v0.11.9_cv8"
 
-    publishDir "./results/raw_reads_fastqc", mode: "copy"
+    publishDir "${projectDir}/results/raw_fastqc", mode: "copy"
 
     input:
     path raw_reads
