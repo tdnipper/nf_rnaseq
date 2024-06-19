@@ -6,13 +6,13 @@ process fastqc {
     publishDir "${projectDir}/results/raw_fastqc", mode: "copy"
 
     input:
-    path raw_reads
+    tuple val(sample), path (reads)
 
     output:
     path "*.zip", emit: raw_qc_channel
 
     script:
     """
-    fastqc ${raw_reads} 
+    fastqc ${reads} 
     """
 }
