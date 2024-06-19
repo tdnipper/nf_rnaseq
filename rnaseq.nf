@@ -9,6 +9,7 @@ workflow  {
     raw_fastqc = fastqc(raw_files_ch)
     bbduk(raw_files_ch)
     ribodepleted_ch = Channel.fromFilePairs(ribodepleted_reads)
-    bbsplit(ribodepleted_reads)
+    bbsplit_index()
+    bbsplit_align(ribodepleted_reads)
 
 }
