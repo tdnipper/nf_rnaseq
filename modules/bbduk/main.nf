@@ -1,6 +1,5 @@
-params.raw_files = Channel.fromFilePairs("/home/ubuntu/blockvolume/cappable_seq_rna_seq/raw_data/*_R{1,2}.fastq.gz")
-
-params.ribofile = "${moduleDir}/ribofile.fasta"
+// Define the ribosomal file
+ribofile = file("${moduleDir}/human_rRNAs.fasta")
 
 process bbduk {
     tag "preprocessing"
@@ -8,14 +7,18 @@ process bbduk {
 
     container "staphb/bbtools"
 
+    def logs = "logs/bbduk"
+
     input:
-    tuple (file1, file2)
+    tuple val(sample), path(reads)
 
     output:
-    ribodepleted_reads
+    tuple val(sample), path("*_ribodepleted.fastq.gz"), emit: ribodepleted_reads
+    path "log/bbduk/*", emit: logs
 
     script:
     """
-    bbduk.sh 
+    mkdir -p $logs
+    bbduk.sh in1=${reads[0]} in2=${reads[1]} out1=${sample}_R1_ribodepleted.fastq.gz out2=${sample}_R2_ribodepleted.fastq.gz ref=${ribofile} stats=log/bbduk/${sample}_stats.txt
     """
 }
