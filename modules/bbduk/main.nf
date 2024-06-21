@@ -1,3 +1,6 @@
+// Define the ribosomal file
+ribofile = file("${moduleDir}/human_rRNAs.fasta")
+
 process bbduk {
     tag "preprocessing"
     tag "decon"
