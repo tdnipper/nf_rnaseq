@@ -1,27 +1,22 @@
-// Define the index directory
-hybrid_genome_file = 
-myco_genome_file = 
+hybrid_genome_ch = Channel.fromPath("${projectDir}/modules/bbsplit/index/hybrid_genome.fasta")
+myco_genome_ch = Channel.fromPath("${projectDir}/modules/bbsplit/index/myco_genome.fasta")
+
 
 process bbsplit_index{
-    tag "prep"
-
-    container "staphb/bbtools"
-
-    shell:
-    """
-    bbsplit.sh ref_nonmyco=${hybrid_genome_file} ref_myco=${myco_genome_file}
-    """
-}
-
-process bbsplit_align {
-    tag "preprocessing"
+    tag "index"
     tag "decon"
 
     container "staphb/bbtools"
 
     input:
-    tuple val(sample), path(reads)
+    path hybrid_genome_file
+    path myco_genome_file
 
     output:
-    tuple val(sample), path("_nonmyco.fastq.gz")
+    path ("bbsplit"), emit: index
+
+    script:
+    """
+    bbsplit.sh ref_nonmyco=${hybrid_genome_file} ref_myco=${myco_genome_file} -Xmx30g
+    """
 }
