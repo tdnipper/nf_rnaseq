@@ -1,6 +1,3 @@
-// Define the ribosomal file
-ribofile = file("${moduleDir}/human_rRNAs.fasta")
-
 process bbduk {
     tag "preprocessing"
     tag "decon"
@@ -15,6 +12,7 @@ process bbduk {
     output:
     tuple val(sample), path("*_ribodepleted.fastq.gz"), emit: ribodepleted_reads
     path "*_stats.txt", emit: logs
+    stdout
 
     script:
     """
