@@ -7,15 +7,14 @@ process bbduk {
 
     container "staphb/bbtools"
 
-    publishDir "logs/bbduk", mode: "move", pattern: "*_stats.txt"
+    publishDir "logs/bbduk", mode: "move", pattern: "*stats.txt"
 
     input:
     tuple val(sample), path(reads)
 
     output:
-    tuple val(sample), path("*_ribodepleted.fastq.gz"), emit: ribodepleted_reads
+    tuple val(sample), path("*ribodepleted.fastq.gz"), emit: ribodepleted_reads
     path "*_stats.txt", emit: logs
-    stdout
 
     script:
     """
