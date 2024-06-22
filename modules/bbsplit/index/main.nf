@@ -10,7 +10,6 @@ process bbsplit_index{
 
     output:
     path "ref", emit: index
-
     script:
     """
     bbsplit.sh ref_nonmyco=${hybrid_genome_file} ref_myco=${myco_genome_file} -Xmx38g
