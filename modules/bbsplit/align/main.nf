@@ -18,7 +18,7 @@ process bbsplit_align {
 
     script:
     """
-    bbsplit.sh in=${r1} in2=${r2} basename=${sample}_#_%.fastq.gz refstats=${sample}_stats.txt
+    bbsplit.sh in=${r1} in2=${r2} basename=${sample}_#_%.fastq.gz refstats=${sample}_stats.txt -Xmx57g
     """
 }
 
