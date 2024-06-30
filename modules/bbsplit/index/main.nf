@@ -13,6 +13,6 @@ process bbsplit_index{
     path "ref/", emit: index, type: "dir"
     script:
     """
-    bbsplit.sh ref_nonmyco=${hybrid_genome_file} ref_myco=${myco_genome_file}
+    bbsplit.sh ref_nonmyco=${hybrid_genome_file} ref_myco=${myco_genome_file} -Xmx57g
     """
 }
