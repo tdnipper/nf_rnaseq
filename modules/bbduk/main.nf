@@ -5,7 +5,7 @@ process bbduk {
     tag "preprocessing"
     tag "decon"
 
-    container "staphb/bbtools"
+    container "quay.io/biocontainers/bbmap:38.22--h470a237_0"
 
     publishDir "logs/bbduk", mode: "move", pattern: "*stats.txt"
 
