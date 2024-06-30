@@ -2,6 +2,8 @@ process bbsplit_align {
     tag "preprocessing"
     tag "decon"
 
+    maxForks 1
+
     container "quay.io/biocontainers/bbmap:38.22--h470a237_0"
 
     publishDir path: "${projectDir}/logs/bbsplit", mode: "symlink"
