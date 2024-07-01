@@ -1,5 +1,5 @@
-// Define the ribosomal file
-ribofile = file("${moduleDir}/human_rRNAs.fasta")
+// Define ribofile using path in config params
+ribofile = file(params.ribofile)
 
 process bbduk {
     tag "preprocessing"

@@ -1,3 +1,6 @@
+// Define input files using paths in config params
+hybrid_genome_file = file(params.hybrid_genome_file)
+myco_genome_file = file(params.myco_genome_file)
 process bbsplit_index{
     tag "index"
     tag "decon"
@@ -5,9 +8,6 @@ process bbsplit_index{
     container "quay.io/biocontainers/bbmap:38.22--h470a237_0"
 
     input:
-    path hybrid_genome_file
-    path myco_genome_file
-    val(sample) // require input from finished bbduk to prevent memory error
 
     output:
     path "ref/", emit: index, type: "dir"
