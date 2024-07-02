@@ -15,6 +15,7 @@ process bbsplit_align {
     output:
     tuple val(sample), path("${sample}_1_nonmyco.fastq.gz"), path("${sample}_2_nonmyco.fastq.gz"), emit: decon_reads
     path "*.txt", emit: logs
+    val(true), emit: done // empty channel to allow subsequent processes to start
 
     script:
     """
