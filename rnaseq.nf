@@ -3,6 +3,7 @@ include {bbduk} from "./modules/bbduk/main.nf"
 include {bbsplit_index} from "./modules/bbsplit/index/main.nf"
 include {bbsplit_align} from "./modules/bbsplit/align/main.nf"
 include {test} from "./test.nf"
+include {star_index} from "./modules/star/index/main.nf"
 
 // Define static locations for input files for now
 raw_files_ch = Channel.fromFilePairs(params.raw_reads, checkIfExists: true)
@@ -14,4 +15,6 @@ workflow  {
     bbduk_files = bbduk_output.ribodepleted_reads.groupTuple() // group all bbduk outputs to pass at once
     bbduk_ch = bbduk_files.combine(index_ready.index) // add index dir to each tuple for reuse
     decon_reads = bbsplit_align(bbduk_ch)
+    starIndex = star_index(decon_reads.done.collect())
+    // decon_reads.done.collect().view()
 }
