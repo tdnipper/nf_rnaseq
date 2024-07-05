@@ -3,10 +3,11 @@ process rename {
     tuple val(sample), path (reads)
 
     output:
-    path("*.gz"), emit: files
+    tuple val(sample), path("*.gz"), emit: files
 
     script:
     """
-    rename.py ${reads}
+    rename.py ${reads[0]}
+    rename.py ${reads[1]}
     """    
 }
