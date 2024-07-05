@@ -1,4 +1,4 @@
-include {bbduk} from "./modules/bbduk/main.nf"
+include {bbduk} from "${projectDir}/modules/bbduk/main.nf"
 
 workflow remove_rRNA {
     take:
