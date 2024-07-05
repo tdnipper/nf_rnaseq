@@ -8,5 +8,5 @@ workflow remove_rRNA {
     trimmed_reads = bbduk(raw_files)
 
     emit:
-    trimmed_reads
+    trimmed_reads.ribodepleted_reads
 }
