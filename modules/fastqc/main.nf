@@ -3,7 +3,7 @@ process fastqc {
 
     container "biocontainers/fastqc:v0.11.9_cv8"
 
-    publishDir "${projectDir}/results/raw_fastqc", mode: "symlink"
+    publishDir "${projectDir}/output/results/raw_fastqc", mode: "symlink"
 
     input:
     tuple val(sample), path (reads)
@@ -13,6 +13,6 @@ process fastqc {
     
     script:
     """
-    fastqc ${reads} 
+    fastqc ${reads} -t ${task.cpus}
     """
 }
