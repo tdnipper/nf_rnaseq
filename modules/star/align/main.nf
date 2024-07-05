@@ -4,6 +4,8 @@ process star_align {
 
     publishDir "${workflow.projectDir}/output/logs/star", mode: 'symlink', pattern: "*Log.out"
     publishDir "${workflow.projectDir}/output/logs/star", mode: "symlink", pattern: "*Log.final.out"
+    publishDir "${projectDir}/output/results/genecounts", mode: "symlink", pattern: "*ReadsPerGene*"
+    publishDir "${projectDir}/output/results/transcript_counts", mode: "symlink", pattern: "*toTranscriptome.out.bam"
 
     input:
     tuple val(sample), path(r1), path(r2)
