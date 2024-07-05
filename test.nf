@@ -13,3 +13,12 @@ process test {
     """
 
 }
+
+process samtools_test {
+    container "tdnipper/bioinformatics:star"
+
+    script:
+    """
+    samtools --version
+    """
+}
