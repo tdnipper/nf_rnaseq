@@ -1,12 +1,12 @@
 process rename {
     input:
-    raw_files
+    tuple val(sample), path (reads)
 
     output:
     path("*.gz"), emit: files
 
     script:
     """
-    python rename.py
+    rename.py ${reads}
     """    
 }
