@@ -9,7 +9,7 @@ process fastqc {
     tuple val(sample), path (reads)
 
     output:
-    path "*.zip"
+    path "*.zip", emit: results
     
     script:
     """
