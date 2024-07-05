@@ -7,3 +7,4 @@ modules/bbsplit/index/hybrid_genome.fasta
 modules/bbsplit/index/myco_genome.fasta
 raw_data
 output
+modules/star/index/hybrid_annotated_cat.gtf
