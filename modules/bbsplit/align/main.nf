@@ -6,7 +6,7 @@ process bbsplit_align {
 
     container "quay.io/biocontainers/bbmap:38.22--h470a237_0"
 
-    publishDir path: "${workflow.projectDir}/logs/bbsplit", mode: "symlink", pattern: "*.txt"
+    publishDir path: "${workflow.projectDir}/output/logs/bbsplit", mode: "symlink", pattern: "*.txt"
 
     input:
     tuple val(sample), path(r1), path(r2), path(index) //ribodepleted_reads from bbduk

@@ -7,7 +7,7 @@ process bbduk {
 
     container "quay.io/biocontainers/bbmap:38.22--h470a237_0"
 
-    publishDir "logs/bbduk", mode: "symlink", pattern: "*stats.txt"
+    publishDir "${projectDir}/output/logs/bbduk", mode: "symlink", pattern: "*stats.txt"
 
     input:
     tuple val(sample), path(reads)

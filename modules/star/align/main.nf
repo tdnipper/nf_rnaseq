@@ -2,8 +2,8 @@ process star_align {
 
     container "tdnipper/bioinformatics:star"
 
-    publishDir "${workflow.projectDir}/logs/star", mode: 'symlink', pattern: "*Log.out"
-    publishDir "${workflow.projectDir}/logs/star", mode: "symlink", pattern: "*Log.final.out"
+    publishDir "${workflow.projectDir}/output/logs/star", mode: 'symlink', pattern: "*Log.out"
+    publishDir "${workflow.projectDir}/output/logs/star", mode: "symlink", pattern: "*Log.final.out"
 
     input:
     tuple val(sample), path(r1), path(r2)
