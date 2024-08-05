@@ -1,4 +1,7 @@
 process trim {
+
+    maxForks = 1
+
     container "tdnipper/bioinformatics:fastp"
 
     publishDir "${projectDir}/output/logs/fastp", pattern: "*.json", mode: "symlink"

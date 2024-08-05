@@ -1,4 +1,7 @@
 process fastqc {
+
+    maxForks = 1
+
     tag "qc"
 
     container "biocontainers/fastqc:v0.11.9_cv8"
@@ -13,6 +16,6 @@ process fastqc {
     
     script:
     """
-    fastqc ${reads} -t ${task.cpus}
+    fastqc ${reads} -t ${params.cpus}
     """
 }
