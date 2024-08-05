@@ -2,7 +2,7 @@ process bbsplit_align {
     tag "preprocessing"
     tag "decon"
 
-    maxForks 1
+    maxForks = 1
 
     container "quay.io/biocontainers/bbmap:38.22--h470a237_0"
 
