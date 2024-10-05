@@ -13,3 +13,6 @@ Reads are first QC'd using `FastQC`. After QC, reads are trimmed using `fastp`an
 
 >[!WARNING]
 >Motif finding using `STREME` is a work in progress despite being included at the end of the workflow. It isn't fully working yet and is under active development.
+
+## Results
+Pipeline outputs are stored in the `results` directory. These include GeneCounts per sample and associated log files from intermediate pipeline steps. These are used to generate the DESeq2 input as described above, and DESeq2 results are several .csv files. Significant results are graphed using `graph_genecounts_deseq1.py`.
