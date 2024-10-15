@@ -1,19 +1,19 @@
 import pandas as pd
-import os
+from pathlib import Path, PurePath
 
-star_dir = "/home/ubuntu/blockvolume/cappable_seq_rna_seq/star_alignment"
+star_dir = Path(__file__).parent / "output" / "results" / "genecounts"
 
 def combine_star_counts(directory):
     data = pd.DataFrame()
     files_to_process = []
-    for dirpath, dirnames, filenames in os.walk(directory):
+    for dirpath, dirnames, filenames in Path.walk(directory):
         for file in filenames:
             if file.endswith("_ReadsPerGene.out.tab"):
-                files_to_process.append(os.path.join(dirpath, file))
+                files_to_process.append(Path(file))
     files_to_process.sort()
     for file in files_to_process: 
         print(f"processing {file}")
-        basename = os.path.basename(file).split("_")[0]
+        basename = PurePath(file).name.split("_")[0]
         raw_data = pd.read_csv(file, sep="\t")
         colnames = raw_data.columns.tolist()
         colnames[0] = "gene_id"
