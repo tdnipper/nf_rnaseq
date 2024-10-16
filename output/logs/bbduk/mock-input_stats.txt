@@ -1,0 +1,1 @@
+/mnt/clipseq/nf_rnaseq/work/91/5f0ef14e09f4add9977a9411149724/mock-input_stats.txt

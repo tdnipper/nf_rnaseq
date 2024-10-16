@@ -1,0 +1,1 @@
+/mnt/clipseq/nf_rnaseq/work/50/d9abab8dcf13d38ea511e1e2c1e876/ix-3-enriched_stats.txt

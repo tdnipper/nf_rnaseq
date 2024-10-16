@@ -1,0 +1,1 @@
+/mnt/clipseq/nf_rnaseq/work/03/a6b79eafa75031ae51e0b8a11dc277/ix-1-2-input_stats.txt
