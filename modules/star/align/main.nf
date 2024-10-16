@@ -25,7 +25,7 @@ process star_align {
 
     script:
     """
-    STAR --runThreadN ${task.cpus} \
+    STAR --runThreadN ${params.cpus} \
     --genomeDir ${index} \
     --readFilesIn ${r1} ${r2} \
     --outFileNamePrefix ${sample}_ \
