@@ -6,7 +6,7 @@ process star_align {
 
     publishDir "${workflow.projectDir}/output/logs/star", mode: 'symlink', pattern: "*Log.out"
     publishDir "${workflow.projectDir}/output/logs/star", mode: "symlink", pattern: "*Log.final.out"
-    publishDir "${projectDir}/output/results/genecounts", mode: "symlink", pattern: "*ReadsPerGene*"
+    publishDir "${projectDir}/output/results/genecounts", mode: "symlink", pattern: "*_ReadsPerGene.out.tab"
     publishDir "${projectDir}/output/results/transcript_counts", mode: "symlink", pattern: "*toTranscriptome.out.bam"
 
     input:
@@ -14,13 +14,12 @@ process star_align {
     path(index)
 
     output:
-    tuple val(sample), path("*_aligned.bam"), emit: bam
-    tuple val(sample), path("*_coord_sorted.bam"), emit: sorted_bam 
+    tuple val(sample), path("*_Aligned.sortedByCoord.out.bam"), emit: sorted_bam 
     tuple val(sample), path("*.bai"), emit: indexed_bam
-    tuple val(sample), path('*.ReadsPerGene.out.tab')  , optional:true, emit: read_per_gene_tab
+    tuple val(sample), path("*_ReadsPerGene.out.tab")  , optional:true, emit: read_per_gene_tab
     tuple val(sample), path("*Log.out"), emit: log_out
     tuple val(sample), path("*Log.final.out"), emit: log_final_out
-    tuple val(sample), path('*toTranscriptome.out.bam'), optional: true, emit: bam_transcript
+    tuple val(sample), path("*toTranscriptome.out.bam"), optional: true, emit: bam_transcript
     val(true), emit: done
 
     script:
@@ -31,15 +30,18 @@ process star_align {
     --outFileNamePrefix ${sample}_ \
     --quantMode ${params.star_mode} \
     --outReadsUnmapped Fastx \
-    --readFilesCommand zcat
+    --readFilesCommand zcat \
+    --outSAMtype BAM SortedByCoordinate
 
-    samtools view ${sample}_Aligned.out.sam -o ${sample}_aligned.bam -@ ${task.cpus}
+    #samtools view ${sample}_Aligned.out.sam -o ${sample}_aligned.bam -@ ${params.cpus}
 
-    rm ${sample}_Aligned.out.sam
+    #rm ${sample}_Aligned.out.sam
 
-    samtools sort ${sample}_aligned.bam -o ${sample}_coord_sorted.bam -@ ${task.cpus}
+    #samtools sort ${sample}_aligned.bam -o ${sample}_coord_sorted.bam -@ ${params.cpus}
 
-    samtools index ${sample}_coord_sorted.bam -@ ${task.cpus}
+    #samtools index ${sample}_coord_sorted.bam -@ ${params.cpus}
+    
+    samtools index ${sample}_Aligned.sortedByCoord.out.bam -@ ${params.cpus}
 
     """
 
