@@ -15,4 +15,8 @@ Reads are first QC'd using `FastQC`. After QC, reads are trimmed using `fastp`an
 >Motif finding using `STREME` is a work in progress despite being included at the end of the workflow. It isn't fully working yet and is under active development.
 
 ## Results
-Pipeline outputs are stored in the `results` directory. These include GeneCounts per sample and associated log files from intermediate pipeline steps. These are used to generate the DESeq2 input as described above, and DESeq2 results are several .csv files. Significant results are graphed using `graph_genecounts_deseq1.py`.
+Pipeline outputs are stored in the `output/results` directory. These include GeneCounts per sample and associated log files from intermediate pipeline steps. These are used to generate the DESeq2 input after combining replicates from STAR into one DataFrame using `merge_star_counts.py`.  DESeq2 results are from `star_count_reads.R`. DESeq2 returns a CSV list of genes `geneCounts_infection.csv`. These genes are annotated with `annotate_gene_names.py` to make `geneCounts_infection_annotated.csv` which are then filtered for significance. Significant results are graphed using `graph_genecounts_deseq2.py`.
+
+![graph of deseq2 results](https://github.com/tdnipper/nf_rnaseq/blob/main/deseq2/-log_p_adj.png)
+
+This figure shows that influenza RNAs are highly enriched as expected. Additionally, we see noncoding RNAs from RNAP III like vtRNA and RNU6 that we expected from our earlier qPCR results on cappable-seq RNA from infected cells. Finally, we see many unannotated transcripts which are also likely from RNAP III and require further investigation.
