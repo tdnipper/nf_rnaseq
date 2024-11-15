@@ -3,7 +3,7 @@ annotationFile = file(params.annotation_file)
 
 process star_index {
     
-    container "tdnipper/bioinformatics:star"
+    container "quay.io/tdnipper/star_samtools"
 
     input:
     val(signal)

@@ -5,7 +5,7 @@ process bbduk {
     tag "preprocessing"
     tag "decon"
 
-    container "quay.io/biocontainers/bbmap:38.22--h470a237_0"
+    container "quay.io/biocontainers/bbmap:39.11--h92535d8_0"
 
     publishDir "${projectDir}/output/logs/bbduk", mode: "symlink", pattern: "*stats.txt"
 

@@ -2,7 +2,7 @@ process trim {
 
     maxForks = 1
 
-    container "tdnipper/bioinformatics:fastp"
+    container "quay.io/biocontainers/fastp:0.24.0--h125f33a_0"
 
     publishDir "${projectDir}/output/logs/fastp", pattern: "*.json", mode: "symlink"
     publishDir "${projectDir}/output/logs/fastp", pattern: "*.html", mode: "symlink"

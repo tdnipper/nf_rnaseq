@@ -1,6 +1,6 @@
 process star_align {
 
-    container "tdnipper/bioinformatics:star"
+    container "quay.io/tdnipper/star_samtools"
 
     maxForks = 1
 
