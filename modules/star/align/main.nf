@@ -64,3 +64,24 @@ process star_removal {
     """
 
 }
+
+process combine_bam {
+    
+    container "quay.io/tdnipper/star_samtools"
+
+    input:
+    val(done)
+    tuple val(sample), path(bam_transcript)
+
+    output:
+    val(true), emit: done
+    path("merged.bam"), emit: final_bam
+
+    script:
+    """
+    samtools sort ${sample}_Aligned.toTranscriptome.out.bam -o ${sample}_Aligned.toTranscriptome.sorted.bam -@ ${params.cpus}
+
+    samtools merge *_Aligned.toTranscriptome.sorted.bam > merged.bam
+    """
+
+}
